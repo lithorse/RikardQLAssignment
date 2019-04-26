@@ -9,6 +9,7 @@ in an MSSQL (express) database, MongoDB or DocumentDB - or read from a file on d
 the data source.
 Assignment
 Implement a GUI containing 1 world map and 2 buttons – READ and CLEAR.
+
 Mandatory requirements
 1. Pressing the READ button should read a number of coordinates from the server-side code and display the
 coordinates as pins on the world map. The pins are labeled with text stored with the coordinates.
