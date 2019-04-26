@@ -26,34 +26,27 @@ export default {
           this.counter++;
           if(this.counter % 3 == 0){
               positionService.getPositions('circle').then(data => {
-                this.markers = [];
-                data.forEach(position => {
-                    this.markers.push({position: { lat: parseFloat(position.latitude), lng: parseFloat(position.longitude) }, title: position.title})
-                });
-                this.$refs.gmap.$mapPromise.then((map) => {
-                    const bounds = new google.maps.LatLngBounds()
-                    for (let m of this.markers) {
-                        bounds.extend(m.position)
-                    }
-                    map.fitBounds(bounds);
-                });
+                this.setMarkers(data);
             });
           }
           else{
             positionService.getPositions().then(data => {
-                this.markers = [];
-                data.forEach(position => {
-                    this.markers.push({position: { lat: parseFloat(position.latitude), lng: parseFloat(position.longitude) }, title: position.title})
-                });
-                this.$refs.gmap.$mapPromise.then((map) => {
-                    const bounds = new google.maps.LatLngBounds()
-                    for (let m of this.markers) {
-                        bounds.extend(m.position)
-                    }
-                    map.fitBounds(bounds);
-                });
+                this.setMarkers(data);
             });
           }
+      },
+      setMarkers(data){
+            this.markers = [];
+            data.forEach(position => {
+                this.markers.push({position: { lat: parseFloat(position.latitude), lng: parseFloat(position.longitude) }, title: position.title})
+            });
+            this.$refs.gmap.$mapPromise.then((map) => {
+                const bounds = new google.maps.LatLngBounds()
+                for (let m of this.markers) {
+                    bounds.extend(m.position)
+                }
+                map.fitBounds(bounds);
+            });
       },
       clearMarkers(){
           this.markers = []
