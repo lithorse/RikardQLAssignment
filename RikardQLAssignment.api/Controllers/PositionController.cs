@@ -23,7 +23,7 @@ namespace RikardQLAssignment.api.Controllers
         public IActionResult Get()
         {
             var positions = repository.Positions;
-            return Ok(positions.Select(p => new { p.Latitude, p.Longitude }));
+            return Ok(positions.Select(p => new { p.Latitude, p.Longitude, p.Title }));
         }
     }
 }

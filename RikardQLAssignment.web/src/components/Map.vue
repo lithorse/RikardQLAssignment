@@ -3,7 +3,7 @@
     <button @click="getMarkers">Read</button>
     <button @click="clearMarkers">Clear</button>
     <GmapMap :center="center" :zoom="3" map-type-id="hybrid" style="width: 100%; height: 900px" :options="{fullscreenControl: false, streetViewControl: false, mapTypeControl: false}">
-        <GmapMarker :key="index" v-for="(m, index) in markers" :position="m.position" :clickable="true" @click="center=m.position"/>
+        <GmapMarker :key="index" v-for="(m, index) in markers" :position="m.position" :title="m.title" :clickable="true" @click="center=m.position"/>
     </GmapMap>
   </div>
 </template>
@@ -22,7 +22,7 @@ export default {
       getMarkers(){
           positionService.getPositions().then(data => {
               data.forEach(position => {
-                this.markers.push({position: { lat: parseFloat(position.latitude), lng: parseFloat(position.longitude) }})
+                this.markers.push({position: { lat: parseFloat(position.latitude), lng: parseFloat(position.longitude) }, title: position.title})
             });
           });
       },
