@@ -18,23 +18,21 @@ export default {
       return {
         center: { lat: 0, lng: 0 },
         markers: [],
-        counter: 0
+        counter: 0,
+        urlAppend: ''
       }
   },
   methods: {
       getMarkers(){
-          this.counter++;
-          if(this.counter % 3 == 0){
-              positionService.getPositions('circle').then(data => {
+            this.counter++;
+            this.urlAppend = '';
+            if(this.counter % 3 == 0){
+                this.urlAppend = 'circle';
+            }
+            positionService.getPositions(this.urlAppend).then(data => {
                 this.setMarkers(data);
             });
-          }
-          else{
-            positionService.getPositions().then(data => {
-                this.setMarkers(data);
-            });
-          }
-      },
+        },
       setMarkers(data){
             this.markers = [];
             data.forEach(position => {
