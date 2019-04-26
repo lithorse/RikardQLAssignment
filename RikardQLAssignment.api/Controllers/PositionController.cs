@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RikardQLAssignment.api.DataAccess;
 using RikardQLAssignment.api.Models;
+using RikardQLAssignment.api.Services;
 
 namespace RikardQLAssignment.api.Controllers
 {
@@ -14,10 +15,12 @@ namespace RikardQLAssignment.api.Controllers
     public class PositionController : ControllerBase
     {
         private readonly IPositionRepository repository;
+        private readonly IGeometryPositionsService geometryPositionsService;
 
-        public PositionController(IPositionRepository repository)
+        public PositionController(IPositionRepository repository, IGeometryPositionsService geometryPositionsService)
         {
             this.repository = repository;
+            this.geometryPositionsService = geometryPositionsService;
         }
 
         [HttpGet]
@@ -31,22 +34,7 @@ namespace RikardQLAssignment.api.Controllers
         [HttpGet]
         public IActionResult GetCircle()
         {
-            var positions = new List<Position>();
-            for (int i = 0; i < 360; i += 30)
-            {
-                var radian = i * Math.PI / 180;
-                var latitude = Math.Round(40 * Math.Cos(radian));
-                var longitude = Math.Round(40 * Math.Sin(radian));
-                var title = $"Latitude: {latitude} Longitude: {longitude}";
-                var position = new Position()
-                {
-                    Latitude = latitude.ToString(),
-                    Longitude = longitude.ToString(),
-                    Title = title
-                };
-                positions.Add(position);
-            }
-
+            var positions = geometryPositionsService.CreateCircle();
             return Ok(positions.Select(p => new { p.Latitude, p.Longitude, p.Title }));
         }
     }

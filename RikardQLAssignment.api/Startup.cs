@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using RikardQLAssignment.api.DataAccess;
+using RikardQLAssignment.api.Services;
 
 namespace RikardQLAssignment.api
 {
@@ -34,6 +35,7 @@ namespace RikardQLAssignment.api
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IPositionRepository, PositionRepository>();
+            services.AddScoped<IGeometryPositionsService, GeometryPositionsService>();
 
         }
 
