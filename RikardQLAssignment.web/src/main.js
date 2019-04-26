@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
+import * as index from './shared/services/index';
 import * as VueGoogleMaps from 'vue2-google-maps'
 
 Vue.use(VueGoogleMaps, {
@@ -8,6 +9,8 @@ Vue.use(VueGoogleMaps, {
     libraries: 'places'
   }
 })
+
+Vue.use(index);
 
 Vue.config.productionTip = false
 
