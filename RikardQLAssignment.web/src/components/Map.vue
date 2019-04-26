@@ -9,21 +9,22 @@
 </template>
 
 <script>
+import {positionService} from '../shared/services'
 export default {
   name: 'Map',
   data(){
       return {
         center: { lat: 0, lng: 0 },
-        markers: [],
-        places: [],
-        currentPlace: null
+        markers: []
       }
   },
   methods: {
       getMarkers(){
-          //TODO: Get markers from backend
-          var positions = getPositions();
-          this.markers.push({position: { lat: 45.508, lng: -73.587 }}, {position: { lat: 28.508, lng: -28.587 }})
+          positionService.getPositions().then(data => {
+              data.forEach(position => {
+                this.markers.push({position: { lat: parseFloat(position.latitude), lng: parseFloat(position.longitude) }})
+            });
+          });
       },
       clearMarkers(){
           this.markers = []

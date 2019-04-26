@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 function getPositions(){
-    var positions = axios.get('https://localhost:8080/api/position/').catch(e => console.log(e));
-    return positions;
+    return axios.get('http://localhost:65013/api/position').then(response => { return response.data }).catch(e => console.log(e));
 }
+
+export const positionService = { getPositions };
