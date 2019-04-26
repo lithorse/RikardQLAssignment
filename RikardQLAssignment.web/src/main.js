@@ -9,6 +9,8 @@ Vue.use(VueGoogleMaps, {
   }
 })
 
+require("./assets/main.scss")
+
 Vue.config.productionTip = false
 
 new Vue({

@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "bulma": "^0.7.4",
     "core-js": "^2.6.5",
     "vue": "^2.6.10",
     "vue2-google-maps": "^0.10.6"
@@ -20,6 +21,8 @@
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.5.21"
   },
   "eslintConfig": {
