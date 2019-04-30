@@ -13,7 +13,8 @@ Implement a GUI containing 1 world map and 2 buttons – READ and CLEAR.
 Technologies used  
 Backend: .NET Core 2.2 and Web API  
 Frontend: Vue.js  
-Map: Google Maps
+Map: Google Maps  
+CSS Framework: Bulma
 
 Mandatory requirements
 1. Pressing the READ button should read a number of coordinates from the server-side code and display the
